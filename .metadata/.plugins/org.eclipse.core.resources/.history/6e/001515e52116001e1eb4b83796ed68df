@@ -1,6 +1,4 @@
 import java.util.Scanner;
-import java.util.Arrays;
-import java.util.Random;
 
 public class SearchAlgorithms 
 {
@@ -43,7 +41,7 @@ public class SearchAlgorithms
 		//initialize the last value
 		int high = array.length - 1;
 		
-		while(low <= high && key >= array[low] && key <= array[high])
+		while(low <= high && key <= array[low] && key <= array[high])
 		{
 			//use the interpolation formula to calculate the position
 			int position = low + (((key - array[low]) * (high - low )) / (array[high] - array[low]));
@@ -84,7 +82,7 @@ public class SearchAlgorithms
 				if (array[j] > array[j + 1])
 				{
 					// swap the position found in this array comparison
-					int temp = array[j];
+					int temp = array[j + 1];
 					array[j] = array[j + 1];
 					array[j + 1] = temp;
 				}
@@ -92,30 +90,6 @@ public class SearchAlgorithms
 		}
 		return array;
 	}
-	
-	/**
-     * Generate a large sorted array.
-     *
-     * @param arraySize the size of the array
-     * @return the generated sorted array
-     */
-    private static int[] generateSortedArray(int arraySize) 
-    {
-        int[] array = new int[arraySize];
-        
-        Random random = new Random();
-        
-        for (int i = 0; i < arraySize; i++) 
-        {
-            array[i] = random.nextInt(1000); // Generate random numbers between 0 and 99
-        }
-        
-        Arrays.sort(array); // Sort the array in ascending order
-        
-        return array;
-    }
-    
-    
 	public static void main(String[] args)
 	{
 		Scanner scanner = new Scanner(System.in);
@@ -131,7 +105,7 @@ public class SearchAlgorithms
 		{
 			try
 			{
-				System.out.print("Enter the number of element in the array: ");
+				System.out.println("Enter the number of element in the array: ");
 				arraySize = scanner.nextInt();
 				validInput = true;
 			}
@@ -145,7 +119,7 @@ public class SearchAlgorithms
 		int[] array = new int[arraySize];
 		
 		// Prompt user to enter the elements of the array
-		System.out.println("\nEnter the element of the array: ");
+		System.out.println("Enter the element of the array: ");
 		
 		for (int i = 0; i < arraySize; i++)
 		{
@@ -175,7 +149,7 @@ public class SearchAlgorithms
 		 {
 			 try
 			 {
-				 System.out.print("\nEnter the search key: ");
+				 System.out.print("Enter the search key: ");
 				 key = scanner.nextInt();
 				 validInput = true;
 			 }
@@ -188,78 +162,17 @@ public class SearchAlgorithms
 		 
 		 // call the bubble sort method to sort the array
 		 
-		int[] sortedArray = bubbleSortAlgorithm(array);
-		
-		
-		
-		int linearSearching = linearSearch( sortedArray, key);
-		
-				
-		if (linearSearching != -1)
-		{
-			System.out.println("\nUsing Linear Search");
-			System.out.println("Search key " + key + " FOUND at index " + linearSearching);
-			
-		}
-		else
-		{
-			System.out.println("\nUsing Linear Search ");
-			System.out.println("Search key " + key + " NOT FOUND");
-		}
-		
-	
-		
-		int interpolationSearching = interpolationAlgorithm(sortedArray, key);
-		
-		
-		if (interpolationSearching != -1)
-		{
-			System.out.println("\nUsing Interpolation Search");
-			System.out.println("Search key " + key + " FOUND at index " + interpolationSearching);
-		}
-		else
-		{
-			System.out.println("\nUsing Interpolation Search");
-			System.out.println("Search key " + key + " NOT FOUND");
-			
-		}
+		array =  bubbleSortAlgorithm(array);
+		for (int i = 0; i < arraySize; i++)
+		System.out.print(array[i] + ",");
+		 
+        
+
 		
 		
 		
 		
-		System.out.println("\nQuestion 2 ");
-		System.out.println("\nI have to use a large array to show significant time difference.") ;
 		
-		int[] sortArray = generateSortedArray(arraySize);
-		
-		sortArray = bubbleSortAlgorithm(sortArray);
-		
-		//start the time it starts to execute the linear search
-		long linearStartTime1 = System.nanoTime(); 
-		
-		int linearSearching1 = linearSearch( sortArray, key);
-		
-		long linearStopTime1 = System.nanoTime();
-		
-		long linearExecutionTime1 = linearStopTime1 - linearStartTime1;
-		
-		long interpolationStartTime1 = System.nanoTime();
-		
-		int interpolationSearching1 = interpolationAlgorithm(sortArray, key);
-		
-		long interpolationStopTime1 = System.nanoTime();
-		
-		long interpolationExecutionTime1 = interpolationStopTime1 - interpolationStartTime1;
-		
-		System.out.println("Execution time for linear Search is " + linearExecutionTime1 + " ns");
-		System.out.println("Execution time for Interpolation Search is " + interpolationExecutionTime1 + " ns");
-		
-		System.out.println("\nThe interpolation search seems to be faster in execution");
-		System.out.println(" \nThe interpolation search algorithm perform better because it makes intelligent guesses about the position of the key element in the sorted array ");
-		
-		System.out.println("To improve the linear Search by 20%, I suggest that we may need to look at the iterative approach. When a key is found at index i, swap the element at the index 'i' with");
-		System.out.println("an element at index i - 1. This moves the found element one position closer to the beginning of the array. As such, if the same key needs to be searched again, it will be found");
-		System.out.println("more quickly in subsequent searches");	
 		
 	}
 

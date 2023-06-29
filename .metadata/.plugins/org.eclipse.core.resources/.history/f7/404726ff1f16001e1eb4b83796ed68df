@@ -1,0 +1,152 @@
+import java.util.Scanner;
+
+public class SearchAlgorithms 
+{
+	//create a method for the linear search algorithm
+	/**
+	 * A search algorithm that sequentially checks each element in a list
+	 * or array until it find the target which is a key in this case or reaches the end of the list
+	 * 
+	 * @param array
+	 * @param key
+	 * @return
+	 */
+	public static int linearSearch( int[] array, int key)
+	{
+		for (int i = 0; i < array.length; i++)
+		{
+			// check to see the key is found
+			if (array[i] == key)
+			{
+				return i;
+			}
+		}
+		//if the key is not found
+		return -1;
+	}
+	/**
+	 * A method of search using interpolation formula to estimate a target key
+	 * within a sorted array. It is efficient when the array is sorted
+	 * This algorithm assumes the array is sorted and uniformly distributed
+	 * 
+	 * @param array
+	 * @param key
+	 * @return
+	 */
+	public static int interpolationAlgorithm( int [] array, int key)
+	{
+		// initialize the lowest value
+		int low = 0;
+		
+		//initialize the last value
+		int high = array.length - 1;
+		
+		while(low <= high && key <= array[low] && key <= array[high])
+		{
+			//use the interpolation formula to calculate the position
+			int position = low + (((key - array[low]) * (high - low )) / (array[high] - array[low]));
+			
+			if (array[position] == key)
+			{
+				return position;
+			}
+			
+			if (array[position] < key)
+			{
+				low = position + 1;
+			}
+			else
+			{
+				high = position - 1;
+			}
+		}
+		
+		return -1;
+	}
+	/**
+	 * This method is the standard bubble sort algorithm to sort the 
+	 * array in ascending order. it takes an array and uses a nested for loop
+	 * to compare adjacent elements and swap them if they are in wrong order.
+	 * The largest element bubbles up to its correct position in each iteration
+	 * 
+	 * @param array
+	 */
+	public static void bubbleSortAlgorithm(int[] array)
+	{
+		//initialize the total element in the array
+		int m = array.length;
+		for (int i = 0; i < m; i++)
+		{
+			for (int j = 0; j < m - i - 1; j++ )
+			{
+				if (array[j] > array[j + 1])
+				{
+					// swap the position found in this array comparison
+					int temp = array[j + 1];
+					array[j] = array[j + 1];
+					array[j + 1] = temp;
+				}
+			}
+		}
+	}
+	public static void main(String[] args)
+	{
+		Scanner scanner = new Scanner(System.in);
+		//initialize the array size
+		int arraySize = 0;
+		
+		//use this as a check
+		boolean validInput = false;
+		
+		// prompt user for the number of elements in the array
+		
+		while (!validInput)
+		{
+			try
+			{
+				System.out.println("Enter the number of element in the array: ");
+				arraySize = scanner.nextInt();
+				validInput = true;
+			}
+			catch (Exception e)
+			{
+				System.out.println("Invalid input. Please enter a valid number");
+				scanner.nextLine(); //clear the input buffer
+			}
+		}
+		
+		int[] array = new int[arraySize];
+		
+		// Prompt user to enter the elements of the array
+		System.out.println("Enter the element of the array: ");
+		
+		for (int i = 0; i < arraySize; i++)
+		{
+			validInput = false;
+			while (!validInput) 
+			{
+				try
+				{
+					System.out.print("Element " + (i + 1) + ": ");
+					array[i] = scanner.nextInt();
+					validInput = true;
+				}
+				catch (Exception e)
+				{
+					System.out.println("Invalid input. Please enter a valid number. ");
+					scanner.nextLine(); //clear the input buffer
+				}
+			}
+		}
+		// Prompt user to enter the search key
+        
+
+		
+		
+		
+		
+		
+		
+	}
+
+}

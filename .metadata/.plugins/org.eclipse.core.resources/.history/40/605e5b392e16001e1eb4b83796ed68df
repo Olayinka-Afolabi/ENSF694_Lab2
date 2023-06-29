@@ -107,7 +107,7 @@ public class SearchAlgorithms
         
         for (int i = 0; i < arraySize; i++) 
         {
-            array[i] = random.nextInt(1000); // Generate random numbers between 0 and 99
+            array[i] = random.nextInt(100); // Generate random numbers between 0 and 99
         }
         
         Arrays.sort(array); // Sort the array in ascending order
@@ -190,11 +190,15 @@ public class SearchAlgorithms
 		 
 		int[] sortedArray = bubbleSortAlgorithm(array);
 		
-		
+		//start the time it starts to execute the linear search
+		long linearStartTime = System.currentTimeMillis(); 
 		
 		int linearSearching = linearSearch( sortedArray, key);
 		
-				
+		long linearStopTime = System.currentTimeMillis();
+		
+		long linearExecutionTime = linearStopTime - linearStartTime;
+		
 		if (linearSearching != -1)
 		{
 			System.out.println("\nUsing Linear Search");
@@ -207,10 +211,14 @@ public class SearchAlgorithms
 			System.out.println("Search key " + key + " NOT FOUND");
 		}
 		
-	
+		//start the time to execute the interpolation algorithm
+		long interpolationStartTime = System.currentTimeMillis();
 		
 		int interpolationSearching = interpolationAlgorithm(sortedArray, key);
 		
+		long interpolationStopTime = System.currentTimeMillis();
+		
+		long interpolationExecutionTime = interpolationStopTime - interpolationStartTime;
 		
 		if (interpolationSearching != -1)
 		{
@@ -224,42 +232,46 @@ public class SearchAlgorithms
 			
 		}
 		
-		
-		
-		
 		System.out.println("\nQuestion 2 ");
-		System.out.println("\nI have to use a large array to show significant time difference.") ;
+		System.out.println("\nI have to use a large array to show significant time different");
 		
 		int[] sortArray = generateSortedArray(arraySize);
 		
 		sortArray = bubbleSortAlgorithm(sortArray);
 		
 		//start the time it starts to execute the linear search
-		long linearStartTime1 = System.nanoTime(); 
+		long linearStartTime1 = System.currentTimeMillis(); 
 		
 		int linearSearching1 = linearSearch( sortArray, key);
 		
-		long linearStopTime1 = System.nanoTime();
+		long linearStopTime1 = System.currentTimeMillis();
 		
 		long linearExecutionTime1 = linearStopTime1 - linearStartTime1;
 		
-		long interpolationStartTime1 = System.nanoTime();
+		long interpolationStartTime1 = System.currentTimeMillis();
 		
 		int interpolationSearching1 = interpolationAlgorithm(sortArray, key);
 		
-		long interpolationStopTime1 = System.nanoTime();
+		long interpolationStopTime1 = System.currentTimeMillis();
 		
 		long interpolationExecutionTime1 = interpolationStopTime1 - interpolationStartTime1;
 		
-		System.out.println("Execution time for linear Search is " + linearExecutionTime1 + " ns");
-		System.out.println("Execution time for Interpolation Search is " + interpolationExecutionTime1 + " ns");
+		System.out.println("Execution time for linear Search is " + linearExecutionTime1 + " ms");
+		System.out.println("Execution time for Interpolation Search is " + interpolationExecutionTime1 + " ms");
 		
-		System.out.println("\nThe interpolation search seems to be faster in execution");
-		System.out.println(" \nThe interpolation search algorithm perform better because it makes intelligent guesses about the position of the key element in the sorted array ");
 		
-		System.out.println("To improve the linear Search by 20%, I suggest that we may need to look at the iterative approach. When a key is found at index i, swap the element at the index 'i' with");
-		System.out.println("an element at index i - 1. This moves the found element one position closer to the beginning of the array. As such, if the same key needs to be searched again, it will be found");
-		System.out.println("more quickly in subsequent searches");	
+		
+		
+		
+		
+		 
+        
+
+		
+		
+		
+		
+		
 		
 	}
 
