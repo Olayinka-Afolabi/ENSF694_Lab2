@@ -242,7 +242,7 @@ public class SearchAlgorithms
 		
 		
 		System.out.println("\nQuestion 2 ");
-		System.out.println("\nI have to use a random generated large array of size 1000 to show significant time difference.") ;
+		System.out.println("\nI have to use a large array to show significant time difference.") ;
 		
 		// call the method to generate random array of size 1000
 		int[] sortArray = generateSortedArray(arraySize);
